@@ -1,5 +1,7 @@
 # 📄 Leitor de DFe — Visualizador de Documentos Fiscais Eletrônicos
 
+![Versão](https://img.shields.io/badge/vers%C3%A3o-1.0.0-blue)
+
 Utilitário desktop **100% offline** e leve para visualizar e exportar DANFE/DACTE a partir de arquivos XML de NFe, NFCe e CTe.
 
 ## ✨ Funcionalidades

@@ -25,6 +25,8 @@ except ImportError:
 from detector import DocInfo
 import viewer
 
+__version__ = "1.0.0"
+
 
 # ──────────────────────────────────────────────
 # Paleta de cores (tema escuro moderno)
@@ -66,7 +68,7 @@ class LeitorDFeApp:
         else:
             self.root = tk.Tk()
 
-        self.root.title("Leitor de DFe")
+        self.root.title(f"Leitor de DFe - v{__version__}")
         self.root.configure(bg=COLORS["bg"])
         self.root.resizable(False, False)
 
