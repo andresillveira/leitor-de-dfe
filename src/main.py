@@ -25,7 +25,7 @@ except ImportError:
 from detector import DocInfo
 import viewer
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 
 
 # ──────────────────────────────────────────────
@@ -485,12 +485,47 @@ class LeitorDFeApp:
         self.drop_hint_label.configure(text="ou clique para selecionar")
         self._set_status("Pronto — Aguardando arquivo XML")
 
-    def run(self):
-        """Inicia o loop principal da aplicação."""
+    def run(self, xml_path: str | None = None):
+        """Inicia o loop principal da aplicação.
+
+        Args:
+            xml_path: Caminho opcional de um arquivo XML para processar
+                      automaticamente ao iniciar (usado pelo menu de contexto).
+        """
+        if xml_path:
+            # Agenda o processamento após a GUI estar pronta
+            self.root.after(100, self._processar_arquivo, xml_path)
         self.root.mainloop()
 
 
 def main():
+    # Verifica se um arquivo XML foi passado via linha de comando
+    # (ex: menu de contexto do Windows → "Abrir DFe")
+    if len(sys.argv) > 1:
+        candidato = sys.argv[1]
+        if os.path.isfile(candidato):
+            try:
+                # Processamento direto em segundo plano (sem GUI)
+                _, pdf_path = viewer.processar_xml(candidato)
+                viewer.abrir_pdf(pdf_path)
+                sys.exit(0)
+            except Exception as e:
+                # Caso ocorra erro, exibe messagebox e encerra
+                root = tk.Tk()
+                root.withdraw()
+                icon_path = Path(__file__).parent.parent / "assets" / "icon.ico"
+                if icon_path.exists():
+                    try:
+                        root.iconbitmap(str(icon_path))
+                    except Exception:
+                        pass
+                messagebox.showerror(
+                    "Erro ao Abrir DFe",
+                    f"Falha ao abrir o documento fiscal:\n{e}"
+                )
+                sys.exit(1)
+
+    # Fluxo normal: abre a interface gráfica
     app = LeitorDFeApp()
     app.run()
 

@@ -1,6 +1,6 @@
 # 📄 Leitor de DFe — Visualizador de Documentos Fiscais Eletrônicos
 
-![Versão](https://img.shields.io/badge/vers%C3%A3o-1.0.0-blue)
+![Versão](https://img.shields.io/badge/vers%C3%A3o-1.1.0-blue)
 
 Utilitário desktop **100% offline** e leve para visualizar e exportar DANFE/DACTE a partir de arquivos XML de NFe, NFCe e CTe.
 
@@ -13,6 +13,7 @@ Utilitário desktop **100% offline** e leve para visualizar e exportar DANFE/DAC
 - **Visualização** no leitor de PDF padrão do sistema
 - **Salvar como** — escolha onde salvar o PDF gerado
 - **Cache inteligente** — PDFs já gerados são reutilizados
+- **Menu de contexto do Windows** — clique direito em qualquer `.xml` → "Abrir DFe" *(novo na v1.1.0)*
 
 ## 📋 Requisitos
 
@@ -24,10 +25,25 @@ Utilitário desktop **100% offline** e leve para visualizar e exportar DANFE/DAC
 ### Opção 1 — Duplo clique
 Execute o arquivo `iniciar.bat`. As dependências serão instaladas automaticamente na primeira execução.
 
-### Opção 2 — Terminal
+### Opção 2 — Menu de contexto do Windows *(recomendado)*
+1. Execute `instalar_menu.bat` **como administrador** (apenas uma vez)
+2. Clique com o botão direito em qualquer arquivo `.xml`
+3. Selecione **"📄 Abrir DFe"**
+4. O programa abre com o documento já carregado
+
+> **Nota (Windows 11):** A opção aparece dentro do submenu "Mostrar mais opções".
+
+Para remover a integração, execute `desinstalar_menu.bat` como administrador.
+
+### Opção 3 — Terminal
 ```bash
 pip install -r requirements.txt
 python src/main.py
+```
+
+Também é possível passar o caminho do XML diretamente:
+```bash
+python src/main.py "C:\caminho\para\nota.xml"
 ```
 
 ## 📦 Dependências
@@ -44,14 +60,17 @@ python src/main.py
 
 ```
 leitor_de_dfe/
-├── IDEA.MD              # Especificação original
-├── README.md            # Este arquivo
-├── requirements.txt     # Dependências pip
-├── iniciar.bat          # Launcher para Windows
+├── IDEA.MD                # Especificação original
+├── README.md              # Este arquivo
+├── requirements.txt       # Dependências pip
+├── iniciar.bat            # Launcher para Windows
+├── instalar_menu.bat      # Instala menu de contexto (admin)
+├── desinstalar_menu.bat   # Remove menu de contexto (admin)
 └── src/
-    ├── main.py          # Interface gráfica (Tkinter)
-    ├── viewer.py        # Geração e abertura de PDF
-    └── detector.py      # Identificação do tipo de documento
+    ├── main.py            # Interface gráfica (Tkinter)
+    ├── viewer.py          # Geração e abertura de PDF
+    ├── detector.py        # Identificação do tipo de documento
+    └── instalar_menu.py   # Gerenciador do registro do Windows
 ```
 
 ## ⚠️ Restrições por design
