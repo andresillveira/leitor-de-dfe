@@ -11,6 +11,7 @@ import shutil
 from pathlib import Path
 
 from brazilfiscalreport.danfe import Danfe
+from brazilfiscalreport.danfe.config import DanfeConfig, FontSize
 from brazilfiscalreport.dacte import Dacte
 
 from detector import DocInfo, DocType, identificar
@@ -57,7 +58,8 @@ def gerar_pdf(xml_content: str, doc_info: DocInfo) -> str:
     
     try:
         if doc_info.tipo in (DocType.NFE, DocType.NFCE):
-            doc = Danfe(xml=xml_content)
+            config = DanfeConfig(font_size=FontSize.BIG)
+            doc = Danfe(xml=xml_content, config=config)
         elif doc_info.tipo == DocType.CTE:
             doc = Dacte(xml=xml_content)
         else:

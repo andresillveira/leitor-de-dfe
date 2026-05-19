@@ -1,6 +1,6 @@
 # 📄 Leitor de DFe — Visualizador de Documentos Fiscais Eletrônicos
 
-![Versão](https://img.shields.io/badge/vers%C3%A3o-1.1.0-blue)
+![Versão](https://img.shields.io/badge/vers%C3%A3o-1.2.0-blue)
 
 Utilitário desktop **100% offline** e leve para visualizar e exportar DANFE/DACTE a partir de arquivos XML de NFe, NFCe e CTe.
 
@@ -14,6 +14,7 @@ Utilitário desktop **100% offline** e leve para visualizar e exportar DANFE/DAC
 - **Salvar como** — escolha onde salvar o PDF gerado
 - **Cache inteligente** — PDFs já gerados são reutilizados
 - **Menu de contexto do Windows** — clique direito em qualquer `.xml` → "Abrir DFe" *(novo na v1.1.0)*
+- **Textos Maiores** — PDFs de DANFE (NFe/NFCe) com tamanho de fonte ampliado em 35% para melhor legibilidade *(novo na v1.2.0)*
 
 ## 📋 Requisitos
 
